@@ -10,7 +10,7 @@ image:
 	docker build -t $IMAGE_NAME .
 
 container:
-	docker run -it --name $CONTAINER_NAME
+	docker run -it --name $CONTAINER_NAME $IMAGE_NAME
 
 all: image container
 

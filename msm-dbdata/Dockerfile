@@ -6,7 +6,7 @@ FROM busybox
 MAINTAINER Paul V. Hoffman <pvhoffman@gmail.com>
 
 # data volume within the container
-VOLUME /var/lib/mysql
+VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]
 
 # Data-only patter container does not need to be a daemon
 CMD ["true"]

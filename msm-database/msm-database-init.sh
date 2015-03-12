@@ -13,6 +13,6 @@ gosu postgres pg_ctl stop
 echo "stopped postgres"
 
 echo ""
-echo "******DOCKER DATABASE CREATED******"
+echo "******MOBILE SALESMAGIC DATABASE CREATED******"
 
 

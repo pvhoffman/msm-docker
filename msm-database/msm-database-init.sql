@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS billing_t (billing_id SERIAL PRIMARY KEY
 CREATE TABLE IF NOT EXISTS book_t (book_id SERIAL PRIMARY KEY
     , book_name VARCHAR(40)
     , book_desc VARCHAR(255)
-    , book_life DOUBLE DEFAULT 12.0
+    , book_life FLOAT DEFAULT 12.0
     , book_state INTEGER DEFAULT 0
     , book_tax INTEGER DEFAULT 1
     , book_flags INTEGER DEFAULT 0

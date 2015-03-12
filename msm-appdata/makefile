@@ -7,15 +7,18 @@ IMAGE_NAME=yellowmagic/msm-appdata
 CONTAINER_NAME=msm-appdata
 
 image:
-	docker build -t $IMAGE_NAME .
+	docker build -t $(IMAGE_NAME) .
 
 container:
-	docker run -it --name $CONTAINER_NAME $IMAGE_NAME
+	docker run -it --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
 all: image container
 
 clean:
-	docker rmi $IMAGE_NAME
-	docker rm $CONTAINER_NAME
+	docker rmi $(IMAGE_NAME)
+	docker rm $(CONTAINER_NAME)
+
+
+
 
 

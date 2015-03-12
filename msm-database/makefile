@@ -1,21 +1,44 @@
-# makefile for msm-database docker image and container
+# makefile for msm-database and msm-dbdata docker image and container
 
-# image name
-IMAGE_NAME=yellowmagic/msm-database
+# image names
+DATABASE_IMAGE_NAME=yellowmagic/msm-database
+DBDATA_IMAGE_NAME=yellowmagic/msm-dbdata
 
-#container name
-CONTAINER_NAME=msm-database
+#container names
+DATABASE_CONTAINER_NAME=msm-database
+DBDATA_CONTAINER_NAME=msm-dbdata
 
-image:
-	docker build -t $IMAGE_NAME .
+# docker build -t yellowmagic/msm-dbdata .
 
-container:
-	docker run -d --rm --volumes-from msm-dbdata --name $CONTAINER_NAME $IMAGE_NAME
+# docker build -t yellowmagic/msm-database .
+## docker run --name msm-dbdata yellowmagic/msm-dbdata echo "msm-dbdata container"
+# docker run --name msm-dbdata yellowmagic/msm-database echo "msm-dbdata container"
+# docker run -d --volumes-from msm-dbdata --name msm-database yellowmagic/msm-database
+#
+dbdataimage:
+	docker build -t $(DBDATA_IMAGE_NAME) .
+
+database image:
+	docker build -t $(DATABASE_IMAGE_NAME) .
+
+image: dbdataimage databaseimage
+
+dbdatacontainer:
+	docker run --name $(DBDATA_CONTAINER_NAME) $(DBDATA_IMAGE_NAME) echo "msm-dbdata container"
+
+databasecontainer:
+	docker run -d --volumes-from $(DBDATA_CONTAINER_NAME) --name $(DATABASE_CONTAINER_NAME) $(DATABASE_IMAGE_NAME)
+
+container: dbdatacontainer databasecontainer
 
 all: image container
 
 clean:
-	docker rmi $IMAGE_NAME
-	docker rm $CONTAINER_NAME
+	docker rmi $(DATBASE_IMAGE_NAME)
+	docker rmi $(DBDATA_IMAGE_NAME)
+	docker rm $(DATABASE_CONTAINER_NAME)
+	docker rm $(DBDATA_CONTAINER_NAME)
+
+
 
 

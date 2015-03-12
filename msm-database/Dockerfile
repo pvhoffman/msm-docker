@@ -2,6 +2,8 @@
 # vim:set ft=dockerfile:
 FROM debian:wheezy
 
+MAINTAINER Paul V. Hoffman <pvhoffman@gmail.com>
+
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r postgres && useradd -r -g postgres postgres
 
